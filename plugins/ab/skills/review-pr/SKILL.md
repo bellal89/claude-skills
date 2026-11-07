@@ -8,6 +8,16 @@ argument-hint: "[PR number; default: the PR of the current branch]"
 
 Review the PR in the steps below, in this order. Do one step at a time.
 
+## 0. Find the PR
+
+- If the user gives a PR number or URL, use it.
+- Else run `gh pr view --json number,headRefName`. If it finds a PR for the current branch, use it.
+- Else stop and ask the user for the PR. Do not guess.
+
+If the current directory is not a git repository of the PR, stop and tell the user.
+
+Make sure that the working tree is clean. Then check out the PR branch: `gh pr checkout <PR>`. Do all steps on this branch.
+
 Before step 1, read:
 
 - `CLAUDE.md` and the files it references (style guide, rules);
@@ -23,7 +33,7 @@ Rules for all steps:
 
 ## 1. Scope: minimal diff
 
-Get the diff: `gh pr diff <PR>`. Compare it with the task.
+Get the diff of the PR from step 0: `gh pr diff <PR>`. Compare it with the task.
 
 Find:
 
