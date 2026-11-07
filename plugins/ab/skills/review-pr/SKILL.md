@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: Review a pull request before merge, step by step - minimal diff, tests, readability, manual test, code-review:code-review, then the PR description. Use when the user asks to review, check, or prepare a PR for merge.
+description: Review a pull request before merge, step by step - minimal diff, tests, readability, code-review:code-review, manual test, then the PR description. Use when the user asks to review, check, or prepare a PR for merge.
 argument-hint: "[PR number; default: the PR of the current branch]"
 ---
 
@@ -62,20 +62,22 @@ Write prose (comments, docs, messages) in ASD-STE100 Simplified Technical Englis
 
 If two texts contradict, fix the contradiction with the shorter change.
 
-## 4. Manual test
-
-If the project has a manual or hardware test for this kind of change, ask the user to run it. Keep the result for step 6.
-
-## 5. Code review
+## 4. Code review
 
 Invoke the `code-review:code-review` skill with the PR number. Show its findings to the user. Apply only the findings that the user approves, then run the tests and the linters.
+
+## 5. Manual test
+
+Do this step after all code changes: a later change makes the test result old.
+
+If the project has a manual or hardware test for this kind of change, ask the user to run it. If a fix is necessary, apply it, run the tests and the linters, and ask the user to run the manual test again. Keep the result for step 6.
 
 ## 6. PR description
 
 Do this step last: steps 1-5 can change the diff.
 
 - Make sure that the description agrees with the final diff.
-- Add the result of the manual test from step 4.
+- Add the result of the manual test from step 5.
 - Apply the readability rules of step 3 to the description, ASD-STE100 included.
 
 Show the new text to the user. Update the PR with `gh pr edit` after the user approves the text.

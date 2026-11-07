@@ -13,6 +13,6 @@ Claude Code plugin marketplace with personal skills.
 
 | Skill | Action |
 | --- | --- |
-| `/ab:review-pr [PR]` | Review a PR step by step: minimal diff, tests, readability, manual test, `code-review:code-review`, then the PR description |
+| `/ab:review-pr [PR]` | Review a PR step by step: minimal diff, tests, readability, `code-review:code-review`, manual test, then the PR description |
 
 `ab:review-pr` needs the `code-review` plugin from `claude-plugins-official`.
