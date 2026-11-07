@@ -1,6 +1,6 @@
 ---
 name: review-pr
-description: Review a pull request before merge, step by step - minimal diff, tests, readability, PR description, then code-review:code-review. Use when the user asks to review, check, or prepare a PR for merge.
+description: Review a pull request before merge, step by step - minimal diff, tests, readability, manual test, code-review:code-review, then the PR description. Use when the user asks to review, check, or prepare a PR for merge.
 argument-hint: "[PR number; default: the PR of the current branch]"
 ---
 
@@ -53,18 +53,29 @@ Report important code that has no test: failure paths, timeouts, bad input, out-
 Read the full diff as a person who does not know the task. Check that the code and the text:
 
 - are short and simple;
-- have no contradictions between code, comments, docs, and the PR description;
+- have no contradictions between code, comments, and docs;
 - have no duplication;
 - do not explain self-evident things;
 - have no filler.
 
+Write prose (comments, docs, messages) in ASD-STE100 Simplified Technical English: short sentences, active voice, imperative for instructions, one meaning per word. If `CLAUDE.md` sets other language rules, use them.
+
 If two texts contradict, fix the contradiction with the shorter change.
 
-## 4. PR description and manual test
+## 4. Manual test
 
-- Make sure that the PR description agrees with the final diff. Update it with `gh pr edit` after the user approves the text.
-- If the project has a manual or hardware test for this kind of change, ask the user to run it. Write the result in the PR description.
+If the project has a manual or hardware test for this kind of change, ask the user to run it. Keep the result for step 6.
 
 ## 5. Code review
 
 Invoke the `code-review:code-review` skill with the PR number. Show its findings to the user. Apply only the findings that the user approves, then run the tests and the linters.
+
+## 6. PR description
+
+Do this step last: steps 1-5 can change the diff.
+
+- Make sure that the description agrees with the final diff.
+- Add the result of the manual test from step 4.
+- Apply the readability rules of step 3 to the description, ASD-STE100 included.
+
+Show the new text to the user. Update the PR with `gh pr edit` after the user approves the text.
