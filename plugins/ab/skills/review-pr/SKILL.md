@@ -52,6 +52,7 @@ Check each test that the PR adds or changes:
 - The test is short and minimal.
 - The test does not check a self-evident thing or a standard or third-party library.
 - No two tests check the same path. If two tests do, keep the higher-level test.
+- Apply the same rule to each `parametrize` case: each case must cover its own branch or catch its own mutation.
 - No duplicate setup or data between tests. Use fixtures and parametrized tests.
 
 Do a mutation check for each important code path: break the code (remove a line, invert a condition), run the tests, then restore the code. At least one test must fail. If no test fails, add a test or report the gap. If a test does not fail for any change in the code it tests, remove the test.
