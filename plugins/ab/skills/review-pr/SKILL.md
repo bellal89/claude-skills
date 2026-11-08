@@ -29,7 +29,7 @@ Rules for all steps:
 - In each step, first list the findings: file, line, problem, proposed fix. Do not change the code before the user approves the list. The user can reject a finding.
 - Apply the approved fixes. Then run the tests and the linters. All must pass before the next step.
 - If two fixes are possible, select the shorter one, unless it is less readable.
-- Commit each step separately. Push only when the user tells you to.
+- Commit each step separately. Push the commits after each step.
 
 ## 1. Scope: minimal diff
 
