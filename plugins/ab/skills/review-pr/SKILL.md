@@ -35,12 +35,22 @@ Rules for all steps:
 
 Get the diff of the PR from step 0: `gh pr diff <PR>`. Compare it with the task.
 
+Read each changed file in full, not only the diff. If you wrote the code in this session, do not rely on memory: read it again as a stranger.
+
 Find:
 
 - Code, files, or text that the task does not need. Remove them.
 - Duplicate code or text. Reuse the existing code.
 - Comments that explain what the code does, repeat the code, or have no information. Remove them.
 - Complex or unclear logic. Make it direct: fewer branches, fewer layers.
+- Over-engineering. For each new function, class, enum, constant, parameter, and docstring, ask:
+  - Is it more general than its uses? Examples: a count that is always 3, a parameter that most callers ignore, an enum that changes only text.
+  - Can you inline or remove it, and keep the readability?
+  - Does a similar function in the project do it in a simpler way?
+
+Earlier decisions (plan rulings, your own choices) are not requirements. Check them too.
+
+List each new item with the result, also "kept because ...".
 
 Readability must not decrease.
 
